@@ -7,7 +7,7 @@ function App() {
     const fetchSpecialMessage = async () => {
         try {
             // Use the correct API URL
-            const response = await axios.get('https://back-end-dict.onrender.com/special');
+            const response = await axios.get('https://backend-xprp.onrender.com/special');
             setMessage(response.data.message);
         } catch (error) {
             console.error('Error fetching special message:', error);

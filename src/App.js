@@ -1,25 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import axios from 'axios';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [message, setMessage] = useState('');
+
+    const fetchSpecialMessage = async () => {
+        try {
+            // Use the correct API URL
+            const response = await axios.get('https://back-end-dict.onrender.com/special');
+            setMessage(response.data.message);
+        } catch (error) {
+            console.error('Error fetching special message:', error);
+        }
+    };
+
+    return (
+        <div className="App">
+            <h1>React Frontend</h1>
+            <button onClick={fetchSpecialMessage}>Fetch Special Message</button>
+            <p>{message}</p>
+        </div>
+    );
 }
 
 export default App;
